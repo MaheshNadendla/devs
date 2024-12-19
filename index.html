@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Signup</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        display: flex;
+        width: 800px;
+        max-width: 90%;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .form-container {
+        width: 50%;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      h2 {
+        margin-bottom: 1.5rem;
+        color: #444;
+      }
+
+      .input-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        background: #2575fc;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        width: 100%;
+      }
+
+      .btn:hover {
+        background: #6a11cb;
+      }
+
+      .toggle-link {
+        margin-top: 1rem;
+        display: inline-block;
+        color: #2575fc;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .message {
+        margin-top: 1rem;
+        font-size: 14px;
+        color: #28a745;
+        display: none;
+      }
+
+      /* Right Side Section */
+      .info-container {
+        width: 50%;
+        background: linear-gradient(135deg, #f3c623, #ff8c00);
+        color: white;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .info-container h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .info-container p {
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .hidden {
+        transform: translateX(100%);
+        opacity: 0;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+      }
+
+      .visible {
+        transform: translateX(0);
+        opacity: 1;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Login Section -->
+    <div class="container">
+      <div id="login-container" class="form-container visible">
+        <h2>Login</h2>
+        <form id="login-form">
+          <div class="input-group">
+            <input type="text" id="login-username" placeholder="Username" required />
+          </div>
+          <div class="input-group">
+            <input type="password" id="login-password" placeholder="Password" required />
+          </div>
+          <button type="submit" class="btn">Login</button>
+          <p class="toggle-link" data-target="signup">Don't have an account? Sign up</p>
+        </form>
+        <p id="login-message" class="message">Login successful! Welcome back!</p>
+      </div>
+
+      <!-- Signup Section -->
+      <div id="signup-container" class="form-container hidden">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+          <div class="input-group">
+            <input type="text" id="signup-username" placeholder="Username" required />
+          </div>
+          <div class="input-group">
+            <input type="email" id="signup-email" placeholder="Email" required />
+          </div>
+          <div class="input-group">
+            <input type="password" id="signup-password" placeholder="Password" required />
+          </div>
+          <button type="submit" class="btn">Sign Up</button>
+          <p class="toggle-link" data-target="login">Already have an account? Login</p>
+        </form>
+      </div>
+
+      <!-- Info Section -->
+      <div class="info-container">
+        <h1 id="info-title">Welcome Back!</h1>
+        <p id="info-message">To stay connected, please login with your personal information.</p>
+      </div>
+    </div>
+
+    <script>
+      const loginContainer = document.getElementById("login-container");
+      const signupContainer = document.getElementById("signup-container");
+      const infoTitle = document.getElementById("info-title");
+      const infoMessage = document.getElementById("info-message");
+
+      document.querySelectorAll(".toggle-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          const target = link.dataset.target;
+          if (target === "signup") {
+            loginContainer.classList.replace("visible", "hidden");
+            signupContainer.classList.replace("hidden", "visible");
+            infoTitle.textContent = "Join Us!";
+            infoMessage.textContent =
+              "Sign up to create an account and explore our features.";
+          } else {
+            signupContainer.classList.replace("visible", "hidden");
+            loginContainer.classList.replace("hidden", "visible");
+            infoTitle.textContent = "Welcome Back!";
+            infoMessage.textContent =
+              "To stay connected, please login with your personal information.";
+          }
+        });
+      });
+
+      const loginForm = document.getElementById("login-form");
+      const loginMessage = document.getElementById("login-message");
+
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        loginMessage.style.display = "block";
+      });
+
+      const signupForm = document.getElementById("signup-form");
+      signupForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        signupContainer.classList.replace("visible", "hidden");
+        loginContainer.classList.replace("hidden", "visible");
+        infoTitle.textContent = "Welcome Back!";
+        infoMessage.textContent =
+          "Sign up successful! Please login with your credentials.";
+      });
+    </script>
+  </body>
+</html>
