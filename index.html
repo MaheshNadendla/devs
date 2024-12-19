@@ -1,86 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Coding By CodingNepal - www.codingnepalweb.com -->
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login & Signup</title>
+    <title>Register Page</title>
+    <link rel="stylesheet" href="style.css" />
 
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #6a11cb, #2575fc);
-        height: 100vh;
+      * {
         margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Open Sans", sans-serif;
+      }
+
+      body {
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        width: 100%;
+        padding: 0 10px;
+        position: relative;
+        perspective: 2700px;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, red, blue, red);
+        background-position: center;
       }
 
-      .container {
-        display: flex;
-        width: 800px;
-        max-width: 90%;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
+      .cover {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 500px;
+        width: 400px;
+        z-index: 98;
+        transition: transform 1s ease;
+        transform-style: preserve-3d;
       }
 
-      .form-container {
-        width: 50%;
-        padding: 2rem;
+      .cover .front,
+      .cover .back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        backface-visibility: hidden;
+      }
+
+      .cover .back {
+        background: linear-gradient(45deg, white, blue);
+        transform: rotateY(180deg);
+      }
+
+      #flip:checked ~ .cover {
+        transform: rotateY(-180deg);
+      }
+
+      .wrapper {
+        width: 400px;
+        height: 500px;
+        padding: 30px;
         text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(60px);
+        -webkit-backdrop-filter: blur(6px);
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
       }
 
       h2 {
-        margin-bottom: 1.5rem;
-        color: #444;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #fff;
       }
 
-      .input-group {
-        margin-bottom: 1.5rem;
+      .input-field {
+        position: relative;
+        border-bottom: 2px solid #ccc;
+        margin: 15px 0;
       }
 
-      .input-group input {
-        width: 100%;
-        padding: 10px;
+      .input-field label {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        color: #fff;
         font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        outline: none;
+        pointer-events: none;
+        transition: 0.15s ease;
       }
 
-      .btn {
-        padding: 10px 20px;
-        background: #2575fc;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background 0.3s ease;
+      .input-field input {
         width: 100%;
+        height: 40px;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        color: #fff;
       }
 
-      .btn:hover {
-        background: #6a11cb;
+      .input-field input:focus ~ label,
+      .input-field input:valid ~ label {
+        font-size: 0.8rem;
+        top: 10px;
+        transform: translateY(-120%);
       }
 
-      .toggle-link {
-        margin-top: 1rem;
-        display: inline-block;
-        color: #2575fc;
+      .forget {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 25px 0 35px 0;
+        color: #fff;
+      }
+
+      #remember {
+        accent-color: #fff;
+      }
+
+      .forget label {
+        display: flex;
+        align-items: center;
+      }
+
+      .forget label p {
+        margin-left: 8px;
+      }
+
+      .wrapper a {
+        color: #efefef;
+        text-decoration: none;
+      }
+
+      .wrapper a:hover {
         text-decoration: underline;
-        cursor: pointer;
       }
 
-      .message {
-        margin-top: 1rem;
-        font-size: 14px;
-        color: #28a745;
+      button {
+        background: #fff;
+        color: #000;
+        font-weight: 600;
+        border: none;
+        padding: 12px 20px;
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 16px;
+        border: 2px solid transparent;
+        transition: 0.3s ease;
+      }
+
+      button:hover {
+        color: #fff;
+        border-color: #fff;
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .register {
+        text-align: center;
+        margin-top: 30px;
+        color: #fff;
+      }
+
+      .cover {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translate(0%, -50%);
+        height: 500px;
+        width: 400px;
+        z-index: 98;
+        transition: all 1s ease;
+        transform-origin: left;
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+      }
+
+      .cover .back {
+        transform: rotateY(180deg);
+      }
+
+      #flip {
         display: none;
       }
 
-      /* Right Side Section */
+      #flip:checked ~ .cover {
+        transform: rotateY(180deg) translate(0%, -50%);
+      }
+
+      #flip:checked ~ .forms .log {
+        pointer-events: none;
+      }
+
       .info-container {
         width: 50%;
         background: linear-gradient(135deg, #f3c623, #ff8c00);
@@ -103,104 +225,81 @@
         line-height: 1.6;
       }
 
-      .hidden {
-        transform: translateX(100%);
-        opacity: 0;
-        transition: transform 0.5s ease, opacity 0.5s ease;
-      }
-
-      .visible {
-        transform: translateX(0);
-        opacity: 1;
-        transition: transform 0.5s ease, opacity 0.5s ease;
+      .orange {
+        color: orange;
+        cursor: pointer;
       }
     </style>
   </head>
   <body>
-    <!-- Login Section -->
-    <div class="container">
-      <div id="login-container" class="form-container visible">
-        <h2>Login</h2>
-        <form id="login-form">
-          <div class="input-group">
-            <input type="text" id="login-username" placeholder="Username" required />
-          </div>
-          <div class="input-group">
-            <input type="password" id="login-password" placeholder="Password" required />
-          </div>
-          <button type="submit" class="btn">Login</button>
-          <p class="toggle-link" data-target="signup">Don't have an account? Sign up</p>
-        </form>
-        <p id="login-message" class="message">Login successful! Welcome back!</p>
-      </div>
+    <input type="checkbox" id="flip" />
 
-      <!-- Signup Section -->
-      <div id="signup-container" class="form-container hidden">
-        <h2>Sign Up</h2>
-        <form id="signup-form">
-          <div class="input-group">
-            <input type="text" id="signup-username" placeholder="Username" required />
-          </div>
-          <div class="input-group">
-            <input type="email" id="signup-email" placeholder="Email" required />
-          </div>
-          <div class="input-group">
-            <input type="password" id="signup-password" placeholder="Password" required />
-          </div>
-          <button type="submit" class="btn">Sign Up</button>
-          <p class="toggle-link" data-target="login">Already have an account? Login</p>
-        </form>
+    <div class="cover">
+      <div class="front info-container">
+        <h1 id="info-title">Join Us!</h1>
+        <p id="info-message">
+          Sign up to create an account and explore our features.
+        </p>
       </div>
-
-      <!-- Info Section -->
-      <div class="info-container">
+      <div class="back info-container">
         <h1 id="info-title">Welcome Back!</h1>
-        <p id="info-message">To stay connected, please login with your personal information.</p>
+        <p id="info-message">
+          To stay connected, please login with your personal information.
+        </p>
       </div>
     </div>
 
-    <script>
-      const loginContainer = document.getElementById("login-container");
-      const signupContainer = document.getElementById("signup-container");
-      const infoTitle = document.getElementById("info-title");
-      const infoMessage = document.getElementById("info-message");
+    <div class="wrapper">
+      <form action="#">
+        <h2>Sign Up</h2>
+        <div class="input-field">
+          <input type="text" required />
+          <label>Enter your name</label>
+        </div>
+        <div class="input-field">
+          <input type="password" required />
+          <label>Enter your email</label>
+        </div>
+        <div class="input-field">
+          <input type="password" required />
+          <label>Enter your password</label>
+        </div>
+        <button type="submit">Register</button>
+        <div class="register">
+          <p>
+            Don't have an account?
+            <label class="orange" for="flip">Login now</label>
+          </p>
+        </div>
+      </form>
+    </div>
 
-      document.querySelectorAll(".toggle-link").forEach((link) => {
-        link.addEventListener("click", () => {
-          const target = link.dataset.target;
-          if (target === "signup") {
-            loginContainer.classList.replace("visible", "hidden");
-            signupContainer.classList.replace("hidden", "visible");
-            infoTitle.textContent = "Join Us!";
-            infoMessage.textContent =
-              "Sign up to create an account and explore our features.";
-          } else {
-            signupContainer.classList.replace("visible", "hidden");
-            loginContainer.classList.replace("hidden", "visible");
-            infoTitle.textContent = "Welcome Back!";
-            infoMessage.textContent =
-              "To stay connected, please login with your personal information.";
-          }
-        });
-      });
-
-      const loginForm = document.getElementById("login-form");
-      const loginMessage = document.getElementById("login-message");
-
-      loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        loginMessage.style.display = "block";
-      });
-
-      const signupForm = document.getElementById("signup-form");
-      signupForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        signupContainer.classList.replace("visible", "hidden");
-        loginContainer.classList.replace("hidden", "visible");
-        infoTitle.textContent = "Welcome Back!";
-        infoMessage.textContent =
-          "Sign up successful! Please login with your credentials.";
-      });
-    </script>
+    <div class="wrapper">
+      <form action="#">
+        <h2>Login</h2>
+        <div class="input-field">
+          <input type="text" required />
+          <label>Enter your email</label>
+        </div>
+        <div class="input-field">
+          <input type="password" required />
+          <label>Enter your password</label>
+        </div>
+        <div class="forget">
+          <label for="remember">
+            <input type="checkbox" id="remember" />
+            <p>Remember me</p>
+          </label>
+          <a href="#">Forgot password?</a>
+        </div>
+        <button type="submit">Log In</button>
+        <div class="register">
+          <p>
+            Don't have an account?
+            <label class="orange" for="flip">Sigup now</label>
+          </p>
+        </div>
+      </form>
+    </div>
   </body>
 </html>
