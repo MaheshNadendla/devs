@@ -1,0 +1,34 @@
+
+
+
+//build a docker file
+
+sudo docker build -t <mydocker> . 
+
+// show docker images
+sudo docker images
+
+// run image and build cointainer
+sudo docker run mydocker
+
+// to show all containers
+sudo docker ps -a
+
+// to show running containers
+sudo docker ps
+
+// remove container
+sudo docker rm <container ID>
+
+// show docker images
+sudo docker images
+
+// remove images
+sudo docker rmi <image ID>
+
+//note : to delete a image : first delete the cointainer : which the image is present
+
+
+
+
+
