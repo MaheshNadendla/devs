@@ -1,0 +1,72 @@
+//pre  Tools for jenkins are
+
+JAVA : 11 / 17
+
+
+// open browser
+// downlod jenkins
+
+
+// click on
+
+Ubuntu/Debian
+
+// select LTS
+
+
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
+
+
+
+
+sudo apt update
+
+// for java 
+
+ sudo apt install fontconfig openjdk-17-jre
+ java -version
+ openjdk version "17.0.13" 2024-10-15
+ OpenJDK Runtime Environment (build 17.0.13+11-Debian-2)
+ OpenJDK 64-Bit Server VM (build 17.0.13+11-Debian-2, mixed mode, sharing)
+
+
+
+
+// You can enable the Jenkins service to start at boot with the command:
+
+sudo systemctl enable jenkins
+
+// You can start the Jenkins service with the command:
+
+sudo systemctl start jenkins
+
+// You can check the status of the Jenkins service using the command:
+
+sudo systemctl status jenkins
+
+=> you can see the password in status 
+
+
+open browser
+
+=> localhost:8080
+
+// for password sudo more <link>
+
+// put password 
+
+// install suggested plugens
+
+//create account
+
+// new file => with pipe line with maven svg git also
+// small file and build
+
+
+

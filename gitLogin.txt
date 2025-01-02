@@ -1,0 +1,11 @@
+
+# Step 1: Configure user identity for Git
+git config --global user.name "MaheshNadendla" # Set your name
+git config --global user.email "maheshnadendla147@.com" # Set your email
+
+# Step 2: Check your configuration
+git config --list # Display the current Git configuration
+
+git add .
+git commit -m "message"
+git push

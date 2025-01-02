@@ -1,0 +1,159 @@
+// empty directry name any ex : tst
+
+mkdir tst
+
+// go there
+
+cd tst
+
+//create a file any ex : readme.txt
+
+touch readme.txt
+
+
+//to create a image first create a docker file any ex : Dockerfile
+
+touch Dockerfile
+
+
+// edit that file with any editor : use proffisial nano editor
+
+nano Dockerfile
+
+=> nano gui opens
+
+//.............. Docker instuctions
+"
+FROM ubuntu
+DMD ["echo","HEllo there"]
+
+"
+
+//save the file cntrl & s
+
+//exit => X
+//Yes => Yes
+
+//create a docker image => with any name ex : mydocker : space dot " ."
+
+sudo docker build -t mydocker .    <= dot is important
+
+//output : sucessfully built , tagged
+
+
+// check the docker images
+
+sudo docker images
+
+// output => all docker images with date, name,tag,id,size
+
+//to run the image <image>
+
+sudo docker run <image>
+
+sudo docker run mydocker
+
+// output : Hello there
+
+
+
+
+
+
+
+/// extra work
+
+// edit that file with any editor : use proffisial nano editor
+
+// add reame.txt and all files in docker
+
+nano Dockerfile
+
+=> nano gui opens
+
+//.............. Docker instuctions
+"
+FROM ubuntu
+COPY . .
+DMD ["echo","HEllo there"]
+
+"
+
+// build docker file again
+
+sudo docker build -t mydocker .
+
+
+//to run the image <image>
+
+sudo docker run <image>
+
+sudo docker run mydocker
+
+// output : Hello there
+
+
+// to create a docker terminal bash : to check files in image
+
+sudo docker run -it mydocker bash
+
+=> new bash created rootxyz :/# 
+// type : ls
+
+ls
+
+files : Dockerfile , readme 
+
+
+
+
+
+
+
+
+
+. all in one bash .
+
+mkdir tst
+cd tst
+touch readme.txt
+touch Dockerfile
+
+nano Dockerfile
+
+FROM ubuntu
+DMD ["echo","HEllo there"]
+
+Ctrl+s
+Ctrl+X
+Ctrl+Y
+
+sudo docker build -t mydocker . 
+sudo docker images
+sudo docker run mydocker
+
+
+
+nano Dockerfile
+
+FROM ubuntu
+COPY . .
+DMD ["echo","HEllo there"]
+
+Ctrl+s
+Ctrl+X
+Ctrl+Y
+
+sudo docker build -t mydocker .
+sudo docker run mydocker
+sudo docker run -it mydocker bash
+
+ls
+
+
+
+
+
+
+
+

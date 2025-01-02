@@ -1,0 +1,136 @@
+
+#!/bin/bash
+
+# Initialize a new Git repository
+git init # Creates a new Git repository in the current directory
+
+# Add a remote repository
+git remote add origin <repository_url> # Links the local repo to a remote one
+
+# Check the current status of the repository
+git status # Shows modified files, staged files, and untracked files
+
+# Add files to the staging area
+git add . # Adds all changes in the current directory to the staging area
+# Alternatively, to add a specific file:
+# git add <file_name>
+
+# Commit changes to the repository
+git commit -m "Initial commit" # Saves staged changes with a message
+
+# Clone a repository
+git clone <repository_url> # Downloads a remote repository to your local machine
+
+# Pull changes from the remote repository
+git pull origin main # Fetches and merges changes from the main branch
+# Replace 'main' with the branch name if different
+
+# Push changes to the remote repository
+git push origin main # Uploads local commits to the remote main branch
+
+# Create and switch to a new branch
+git checkout -b feature-branch # Creates and switches to 'feature-branch'
+
+# Switch to an existing branch
+git checkout main # Switches to the 'main' branch
+
+# Merge a branch into the current branch
+git merge feature-branch # Merges 'feature-branch' into the current branch
+
+# List all branches
+git branch # Lists all local branches
+git branch -r # Lists all remote branches
+
+# Delete a branch
+git branch -d feature-branch # Deletes the 'feature-branch' locally
+git push origin --delete feature-branch # Deletes 'feature-branch' from the remote
+
+# View commit history
+git log # Shows the commit history
+git log --oneline # Shows a concise, one-line log for each commit
+
+# Reset a file or repository
+git reset HEAD <file_name> # Unstages a file from the staging area
+git reset --hard HEAD # Resets the repository to the last commit, discarding changes
+
+# Stash changes
+git stash # Temporarily stores uncommitted changes
+git stash pop # Applies the stashed changes back
+
+# Show changes
+git diff # Shows unstaged changes
+git diff --staged # Shows staged changes
+
+# Tagging
+git tag -a v1.0 -m "Version 1.0" # Creates an annotated tag
+git push origin v1.0 # Pushes the tag to the remote repository
+
+# View remote repositories
+git remote -v # Lists remote repositories with their fetch and push URLs
+
+# Remove a remote
+git remote remove origin # Unlinks the local repository from the remote
+
+# Show file changes between commits
+git show <commit_hash> # Shows changes made in a specific commit
+
+# Revert changes
+git revert <commit_hash> # Creates a new commit that undoes changes from a specific commit
+
+# Cherry-pick a commit
+git cherry-pick <commit_hash> # Applies a specific commit to the current branch
+
+# View the blame for a file
+git blame <file_name> # Shows who made each change to the file
+
+
+
+
+# Rename a branch
+git branch -m old-branch-name new-branch-name # Renames a branch locally
+git push origin :old-branch-name new-branch-name # Deletes the old branch remotely and pushes the renamed branch
+
+# Squash commits (combine multiple commits into one)
+git rebase -i HEAD~3 # Interactively rebase the last 3 commits
+# Mark commits as "squash" to combine them during the rebase
+
+# Undo a pushed commit
+git revert <commit_hash> # Safely creates a new commit to undo changes
+git push origin main # Pushes the revert commit
+
+# Clean untracked files and directories
+git clean -f # Removes untracked files
+git clean -fd # Removes untracked files and directories
+
+# Check out a file from a specific commit
+git checkout <commit_hash> -- <file_name> # Retrieves a file from a specific commit
+
+# Archive a repository into a zip/tarball
+git archive --format=zip HEAD -o repo.zip # Creates a zip archive of the current branch
+
+# Check if a branch is merged
+git branch --merged # Lists branches merged into the current branch
+git branch --no-merged # Lists branches not merged into the current branch
+
+# Show a graphical representation of commit history
+git log --graph --oneline --all # Displays a visual representation of branches and commits
+
+# Bisect to find the commit that introduced a bug
+git bisect start # Starts a binary search
+git bisect bad # Marks the current commit as bad
+git bisect good <commit_hash> # Marks a known good commit
+# Repeat until the bad commit is found, then run:
+git bisect reset # Resets the repository to the original state
+
+# Save credentials temporarily for a session
+git config --global credential.helper cache # Caches credentials for the session
+
+# Configure global username and email
+git config --global user.name "Your Name" # Sets global username
+git config --global user.email "your.email@example.com" # Sets global email
+
+# Show all settings
+git config --list # Displays all Git configuration settings
+
+# Resolve merge conflicts manually
+git mergetool # Opens a merge resolution tool if available
