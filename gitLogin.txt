@@ -6,6 +6,18 @@ git config --global user.email "maheshnadendla147@.com" # Set your email
 # Step 2: Check your configuration
 git config --list # Display the current Git configuration
 
+
+
+// create and work with a file
+
+
+
 git add .
 git commit -m "message"
+
+
+
+
 git push
+
+//Login game
