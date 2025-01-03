@@ -25,7 +25,7 @@ nano Dockerfile
 //.............. Docker instuctions
 "
 FROM ubuntu
-DMD ["echo","HEllo there"]
+CMD ["echo","HEllo there"]
 
 "
 

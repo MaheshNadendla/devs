@@ -1,5 +1,15 @@
 
+
+mkdir check
+
+cd check
+
+touch x.txt
+
+
 # Step 1: Configure user identity for Git
+git init
+
 git config --global user.name "MaheshNadendla" # Set your name
 git config --global user.email "maheshnadendla147@.com" # Set your email
 
@@ -8,7 +18,11 @@ git config --list # Display the current Git configuration
 
 
 
+
+
 // create and work with a file
+
+x.txt => 
 
 
 
